@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="lo"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Burger House – ສັ່ງເບີເກີ</title>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Lao:wght@400;600;700&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#fff8f0;--card:#fff;--tx:#2b1d14;--mu:#7a6555;--pr:#d9480f;--pr2:#fff0e6;--bd:#ecd9c8;color-scheme:light;
+box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+@media(prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#1c1511;--card:#2a201a;--tx:#f5e9dd;--mu:#b9a493;--pr:#ff8a4c;--pr2:#3a2a20;--bd:#4a392d;color-scheme:dark}}
+:root[data-theme="dark"]{--bg:#1c1511;--card:#2a201a;--tx:#f5e9dd;--mu:#b9a493;--pr:#ff8a4c;--pr2:#3a2a20;--bd:#4a392d;color-scheme:dark}
+*{box-sizing:border-box}html{scroll-behavior:smooth;scroll-padding-top:70px}
+body{margin:0;background:var(--bg);color:var(--tx);font-family:'Noto Sans Lao','Phetsarath OT','Lao UI',Tahoma,sans-serif;line-height:1.6}
+nav{position:sticky;top:env(safe-area-inset-top,0px);background:var(--card);border-bottom:1px solid var(--bd);display:flex;gap:6px;align-items:center;padding:10px 16px;z-index:5;flex-wrap:wrap}
+nav b{margin-right:auto;font-size:18px;color:var(--pr)}nav a{color:var(--tx);text-decoration:none;padding:4px 10px;border-radius:20px;font-size:14px}nav a:hover{background:var(--pr2)}
+.badge{background:var(--pr);color:#fff;border-radius:10px;padding:0 7px;font-size:12px;margin-left:4px}
+section{max-width:1000px;margin:0 auto;padding:28px 16px}
+.hero{text-align:center;padding:48px 16px;background:var(--pr2);border-bottom:1px solid var(--bd)}
+.hero h1{margin:0 0 6px;font-size:34px}.hero p{color:var(--mu);margin:0 0 18px}
+h2{font-size:22px;margin:0 0 14px}
+.btn{background:var(--pr);color:#fff;border:0;border-radius:10px;padding:10px 18px;font:inherit;font-weight:600;cursor:pointer;text-decoration:none;display:inline-block}
+.btn.o{background:transparent;color:var(--pr);border:1px solid var(--pr)}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:14px}
+.card{background:var(--card);border:1px solid var(--bd);border-radius:14px;padding:14px}
+.card svg{width:100%;height:150px}.card h3{margin:6px 0 2px;font-size:16px}.card small{color:var(--mu)}
+.price{font-weight:700;color:var(--pr);font-size:18px}.old{text-decoration:line-through;color:var(--mu);font-size:13px;margin-right:6px}
+.build{display:grid;grid-template-columns:1fr 340px;gap:18px;align-items:start}
+@media(max-width:760px){.build{grid-template-columns:1fr}}
+.step{margin-bottom:14px}.step h4{margin:0 0 6px;font-size:15px}
+.opts{display:flex;flex-wrap:wrap;gap:8px}
+.opt{position:relative}.opt input{position:absolute;opacity:0}
+.opt span{display:block;border:1px solid var(--bd);background:var(--card);border-radius:20px;padding:5px 12px;font-size:14px;cursor:pointer}
+.opt span i{font-style:normal;color:var(--mu);font-size:12px;margin-left:4px}
+.opt input:checked+span{background:var(--pr);color:#fff;border-color:var(--pr)}.opt input:checked+span i{color:#fff}
+.opt input:focus-visible+span{outline:2px solid var(--pr);outline-offset:2px}
+.side{position:sticky;top:70px}.side svg{width:100%;height:230px;background:var(--pr2);border-radius:12px}
+.row{display:flex;justify-content:space-between;align-items:center;margin:8px 0}
+.qty{display:flex;align-items:center;gap:8px}.qty button{width:30px;height:30px;border-radius:50%;border:1px solid var(--bd);background:var(--card);color:var(--tx);font-size:18px;cursor:pointer}
+.tot{font-size:22px;font-weight:700;color:var(--pr)}
+.cartrow{display:flex;gap:10px;justify-content:space-between;border-bottom:1px solid var(--bd);padding:10px 0}
+.cartrow small{color:var(--mu);display:block}.x{background:none;border:0;color:var(--pr);cursor:pointer;font:inherit}
+input[type=text],input[type=tel]{width:100%;padding:9px;border:1px solid var(--bd);border-radius:8px;background:var(--card);color:var(--tx);font:inherit;margin-bottom:8px}
+.ok{background:var(--pr2);border:1px solid var(--pr);border-radius:12px;padding:12px;margin-top:12px;white-space:pre-line}
+footer{text-align:center;color:var(--mu);font-size:13px;padding:24px 16px}
+</style></head><body>
+<nav><b>🍔 Burger House</b><a href="#menu">ເມນູ</a><a href="#build">ປະກອບເບີເກີ</a><a href="#cart">ກະຕ່າ<span class="badge" id="nb">0</span></a><a href="#contact">ຕິດຕໍ່</a></nav>
+<div class="hero"><h1>ປະກອບເບີເກີຕາມໃຈເຈົ້າ</h1><p>ເລືອກສ່ວນປະກອບ ເບິ່ງຮູບ ແລະ ລາຄາທັນທີ</p><a class="btn" href="#build">ສັ່ງເລີຍ</a></div>
+
+<section id="menu"><h2>ເມນູແນະນຳ</h2><div class="grid" id="presets"></div></section>
+
+<section id="build"><h2>ປະກອບເບີເກີ</h2>
+<div class="build"><div id="steps"></div>
+<div class="card side"><svg id="burger" viewBox="0 0 240 240" role="img" aria-label="ຮູບເບີເກີທີ່ປະກອບ"></svg>
+<div class="row"><span>ລາຄາຕໍ່ອັນ</span><b id="unit">0</b></div>
+<div class="row"><span>ຈຳນວນ</span><div class="qty"><button id="mi" aria-label="ຫຼຸດ">−</button><b id="q">1</b><button id="pl" aria-label="ເພີ່ມ">+</button></div></div>
+<div class="row"><span>ລາຄາລວມ</span><span class="tot" id="sum">0</span></div>
+<button class="btn" id="add" style="width:100%">ເພີ່ມໃສ່ກະຕ່າ</button></div></div></section>
+
+<section id="cart"><h2>ກະຕ່າ</h2><div class="card"><div id="items"></div>
+<div class="row"><b>ລວມທັງໝົດ</b><span class="tot" id="all">0 ກີບ</span></div>
+<input type="text" id="nm" placeholder="ຊື່ຂອງທ່ານ"><input type="tel" id="ph" placeholder="ເບີໂທ / WhatsApp">
+<button class="btn" id="go">ຢືນຢັນຄຳສັ່ງ</button><div id="done"></div></div></section>
+
+<section id="contact"><h2>ຕິດຕໍ່</h2><div class="card">📍 ນະຄອນຫຼວງວຽງຈັນ (ທີ່ຢູ່ສົມມຸດ)<br>🕙 ເປີດທຸກວັນ 10:00 – 21:00<br>📞 020 0000 0000 (ເບີສົມມຸດ)</div></section>
+<footer>ໜ້ານີ້ເປັນແບບຈຳລອງ ລາຄາເປັນຄ່າສົມມຸດ ບໍ່ມີການສັ່ງຊື້ຈິງ</footer>
+
+<script>
+const D=[
+["B01","bun","ເຂົ້າຈີ່ເບີເກີ",5000,"#e0a458"],["B02","bun","ເຂົ້າຈີ່ງາ",7000,"#e0a458"],["B03","bun","ເຂົ້າຈີ່ມັນຝຣັ່ງ",10000,"#f2c46d"],
+["M01","meat","ຊີ້ນງົວບົດ",25000,"#6b3a1e"],["M02","meat","ຊີ້ນງົວແອງກັສ",40000,"#472211"],
+["C01","cheese","ຊີສອາເມຣິກັນ",7000,"#ffc933"],["C02","cheese","ຊີສສະວິດ",10000,"#fbe7a1"],
+["V01","veg","ຜັກສະລັດ",2000,"#5cb85c"],["V02","veg","ໝາກເລັ່ນ",2000,"#e5383b"],["V03","veg","ຫົວຜັກບົ່ວ",2000,"#efdcf0"],["V04","veg","ຫົວຜັກບົ່ວປີ້ງ",4000,"#b8864b"],
+["V05","veg","ແຕງດອງ",2000,"#7fa650"],["V06","veg","ເຫັດປີ້ງ",6000,"#8a6d57"],["V07","veg","ໝາກເຜັດຮາລາເປໂນ",4000,"#2e7d32"],["V08","veg","ໝາກເຜັດຫວານຂຽວ",4000,"#43a047"],
+["S01","sauce","ມາໂຍເນສ",2000,"#fff3c4"],["S02","sauce","ຊອສໝາກເລັ່ນ",2000,"#d62828"],["S03","sauce","ມັດສະຕາດ",2000,"#e9c46a"],["S04","sauce","ຊອສບິກແມັກ",4000,"#f4a261"],
+["S05","sauce","ຊອສເຊັກແຊັກ",4000,"#e76f51"],["S06","sauce","ຊອສບາບີຄິວ",4000,"#5c2a14"],["S07","sauce","ແຕງດອງສັບປຸງລົດ",3000,"#9ccc65"],
+["T01","top","ເບຄອນ",12000,"#b5483a"],["T02","top","ໄຂ່ດາວ",8000,"#fffdf5"]];
+const G={bun:["1. ເລືອກເຂົ້າຈີ່","r"],meat:["2. ເລືອກຊີ້ນ","r"],cheese:["3. ຊີສ (ບໍ່ບັງຄັບ)","o"],veg:["4. ຜັກ (ເລືອກໄດ້ຫຼາຍຢ່າງ)","c"],sauce:["5. ຊອສ (ເລືອກໄດ້ຫຼາຍຢ່າງ)","c"],top:["6. ທັອບປິ້ງເສີມ","c"]};
+const P=[["ຄລາສສິກຊີສເບີເກີ","B02","M01","C01",["V01","V02","V05"],["S01","S02"],[]],["ແອງກັສບາບີຄິວ","B03","M02","C02",["V04","V06"],["S06"],["T01"]],["ໄຂ່ດາວເບຄອນ","B01","M01","C01",["V01","V03"],["S03"],["T01","T02"]]];
+const DISC=0.10,by=id=>D.find(d=>d[0]===id),fmt=n=>n.toLocaleString('en-US');
+let sel={bun:"B01",meat:"M01",cheese:null,veg:[],sauce:[],top:[]},qty=1,cart=[];
+const ids=s=>[s.bun,s.meat,s.cheese,...s.veg,...s.sauce,...s.top].filter(Boolean);
+const price=s=>ids(s).reduce((a,i)=>a+by(i)[3],0);
+function svg(s){let y=0,o='';const L=[];
+ const bun=by(s.bun);L.push(['bot',bun]);
+ L.push(['meat',by(s.meat)]);if(s.cheese)L.push(['cheese',by(s.cheese)]);
+ s.top.forEach(i=>L.push([i==='T02'?'egg':'bacon',by(i)]));
+ s.veg.forEach(i=>L.push(['veg',by(i)]));s.sauce.forEach(i=>L.push(['sauce',by(i)]));
+ const H={bot:22,meat:16,cheese:6,egg:8,bacon:6,veg:6,sauce:5};
+ const tot=L.reduce((a,l)=>a+H[l[0]],0)+40,vh=Math.max(240,tot+30);y=vh-14;
+ L.forEach(([k,d])=>{const h=H[k];y-=h;const c=d[4];
+  if(k==='bot')o+=`<rect x="42" y="${y}" width="156" height="${h}" rx="9" fill="${c}"/>`;
+  else if(k==='meat')o+=`<rect x="38" y="${y}" width="164" height="${h}" rx="8" fill="${c}"/>`;
+  else if(k==='cheese')o+=`<path d="M36 ${y}h168l-14 ${h+5}-12-${h-1}-14 ${h+3}-14-${h}-14 ${h+4}-14-${h}-14 ${h+2}-12-${h}-20 ${h}z" fill="${c}"/>`;
+  else if(k==='egg')o+=`<ellipse cx="120" cy="${y+4}" rx="76" ry="5" fill="#fffdf5" stroke="#e8e0cc"/><circle cx="120" cy="${y+3}" r="6" fill="#ffb703"/>`;
+  else if(k==='bacon')o+=`<path d="M34 ${y+3}q15-7 30 0t30 0 30 0 30 0 30 0 22 0" stroke="${c}" stroke-width="6" fill="none"/>`;
+  else if(k==='veg')o+=`<rect x="${d[0]==='V01'?32:40}" y="${y}" width="${d[0]==='V01'?176:160}" height="${h}" rx="3" fill="${c}"/>`;
+  else o+=`<path d="M44 ${y+2}q12 6 24 0t24 0 24 0 24 0 24 0 12 0" stroke="${c}" stroke-width="5" fill="none"/>`;});
+ y-=34;o+=`<path d="M40 ${y+34}q0-34 80-34t80 34z" fill="${bun[4]}"/>`;
+ if(s.bun==='B02')[[80,12],[110,6],[140,10],[165,18],[95,22],[130,22]].forEach(([a,b])=>o+=`<ellipse cx="${a+0}" cy="${y+b+6}" rx="4" ry="2" fill="#fff5d6"/>`);
+ return [`0 0 240 ${vh}`,o];}
+const draw=(el,s)=>{const [vb,o]=svg(s);el.setAttribute('viewBox',vb);el.innerHTML=o};
+function steps(){let h='';for(const k in G){const [t,m]=G[k];h+=`<div class="step"><h4>${t}</h4><div class="opts">`;
+ if(m==='o')h+=`<label class="opt"><input type="radio" name="${k}" value="" ${!sel[k]?'checked':''}><span>ບໍ່ເອົາ</span></label>`;
+ D.filter(d=>d[1]===k).forEach(d=>{const on=m==='c'?sel[k].includes(d[0]):sel[k]===d[0];
+  h+=`<label class="opt"><input type="${m==='c'?'checkbox':'radio'}" name="${k}" value="${d[0]}" ${on?'checked':''}><span>${d[2]}<i>+${fmt(d[3])}</i></span></label>`});
+ h+='</div></div>'}document.getElementById('steps').innerHTML=h}
+function upd(){const u=price(sel);draw(burger,sel);unit.textContent=fmt(u)+' ກີບ';q.textContent=qty;sum.textContent=fmt(u*qty)+' ກີບ'}
+steps();upd();
+document.getElementById('steps').addEventListener('change',e=>{const k=e.target.name,m=G[k][1];
+ if(m==='c')sel[k]=[...document.querySelectorAll(`input[name=${k}]:checked`)].map(i=>i.value);else sel[k]=e.target.value||null;upd()});
+mi.onclick=()=>{qty=Math.max(1,qty-1);upd()};pl.onclick=()=>{qty=Math.min(50,qty+1);upd()};
+const desc=s=>ids(s).map(i=>by(i)[2]).join(', ');
+add.onclick=()=>{cart.push({s:JSON.parse(JSON.stringify(sel)),qty});rc();add.textContent='✓ ເພີ່ມແລ້ວ';setTimeout(()=>add.textContent='ເພີ່ມໃສ່ກະຕ່າ',1200)};
+function rc(){nb.textContent=cart.reduce((a,c)=>a+c.qty,0);
+ items.innerHTML=cart.length?cart.map((c,i)=>`<div class="cartrow"><div><b>${by(c.s.bun)[2]} + ${by(c.s.meat)[2]}</b> × ${c.qty}<small>${desc(c.s)}</small></div><div><b>${fmt(price(c.s)*c.qty)}</b><br><button class="x" data-i="${i}">ລຶບ</button></div></div>`).join(''):'<p style="color:var(--mu)">ຍັງບໍ່ມີລາຍການ</p>';
+ all.textContent=fmt(cart.reduce((a,c)=>a+price(c.s)*c.qty,0))+' ກີບ'}
+items.onclick=e=>{if(e.target.dataset.i!==undefined){cart.splice(+e.target.dataset.i,1);rc()}};rc();
+go.onclick=()=>{if(!cart.length){done.innerHTML='<div class="ok">ກະລຸນາເພີ່ມເບີເກີກ່ອນ</div>';return}
+ if(!nm.value.trim()||!ph.value.trim()){done.innerHTML='<div class="ok">ກະລຸນາຕື່ມຊື່ ແລະ ເບີໂທ</div>';return}
+ done.innerHTML=`<div class="ok">✓ ຮັບຄຳສັ່ງແລ້ວ (ຈຳລອງ)\nຄຸນ ${nm.value.trim().replace(/</g,'&lt;')} • ${ph.value.trim().replace(/</g,'&lt;')}\nຍອດລວມ ${all.textContent}</div>`;cart=[];rc()};
+presets.innerHTML=P.map((p,i)=>{const s={bun:p[1],meat:p[2],cheese:p[3],veg:p[4],sauce:p[5],top:p[6]},pr=price(s),sp=Math.round(pr*(1-DISC)/100)*100;
+ return `<div class="card"><svg id="ps${i}" viewBox="0 0 240 240"></svg><h3>${p[0]}</h3><small>${desc(s)}</small><div class="row"><span><span class="old">${fmt(pr)}</span><span class="price">${fmt(sp)} ກີບ</span></span><button class="btn o" data-p="${i}">ເລືອກ</button></div></div>`}).join('');
+P.forEach((p,i)=>draw(document.getElementById('ps'+i),{bun:p[1],meat:p[2],cheese:p[3],veg:p[4],sauce:p[5],top:p[6]}));
+presets.onclick=e=>{const i=e.target.dataset.p;if(i===undefined)return;const p=P[+i];sel={bun:p[1],meat:p[2],cheese:p[3],veg:[...p[4]],sauce:[...p[5]],top:[...p[6]]};qty=1;steps();upd();document.getElementById('build').scrollIntoView()};
+</script></body></html>
